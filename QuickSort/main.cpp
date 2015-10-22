@@ -8,8 +8,48 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+using namespace std;
+
+//=======================================================================================================================
+void QuickSort(int arr[], int left, int right)
+{
+    int i = left, j = right;
+    int tmp;
+    int pivot = arr[(left + right) / 2];
+    
+    while (i <= j)
+    {
+        while (arr[i] < pivot)
+            i++;
+        while (arr[j] > pivot)
+            j--;
+        if (i <= j) {
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+    
+    if (left < j)
+    {
+        QuickSort(arr, left, j);
+    }
+    if (i < right)
+    {
+        QuickSort(arr, i, right);
+    }
+}
+
+//=======================================================================================================================
+int main()
+{
+    int arr[] = {5,7,10,9,2,3,4,8};
+    QuickSort(arr, 0, 7);
+    for (int i = 0; i<8; i++)
+    {
+        cout << arr[i] <<" ";
+    }
+    cout << endl;
 }
